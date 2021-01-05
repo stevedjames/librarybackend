@@ -100,7 +100,10 @@ app.post('/login', (req, res) => {
         } else 
         if ( password !== userData.password) {
           res.status(401).send('Invalid Password')
-        } else {
+        } else 
+        if ( !password) {
+          res.status(401).send('Invalid Password')
+        }else {
           let payload = {subject: username+password}
           let token = jwt.sign(payload, 'secretKey')
           res.status(200).send({token})
